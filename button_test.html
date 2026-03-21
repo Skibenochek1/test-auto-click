@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Автоклик тест</title></head>
+<body style="font-family:Arial;padding:50px">
+  <h1>🚀 Тест автоклика (реальный сайт)</h1>
+  <button id="testButton" disabled style="padding:20px;font-size:24px">Жду 5 сек...</button>
+  <div id="result" style="font-size:28px;color:#0a0;margin:20px 0"></div>
+
+  <script>
+  const btn = document.getElementById('testButton');
+  const result = document.getElementById('result');
+  let activateTime;
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = '✅ АКТИВНА!';
+    activateTime = performance.now();
+    console.log('⏰ АКТИВАЦИЯ');
+  }, 5000);
+
+  btn.onclick = () => {
+    const time = performance.now() - activateTime;
+    result.innerHTML = `⏱️ <b>${time.toFixed(0)}мс</b>`;
+    console.log(`✅ КЛИК: ${time.toFixed(0)}мс`);
+  };
+  </script>
+</body>
+</html>
