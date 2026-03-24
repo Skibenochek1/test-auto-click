@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовая форма заявления</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тестовая страница для Selenium</h1>
+
+    <!-- Кнопка QR-код -->
+    <button id="qr-btn">QR-код</button>
+
+    <!-- Сообщение о сохранении -->
+    <h3 id="saved" style="display: none;">Заявление сохранено</h3>
+
+    <!-- Кнопка "На главную" -->
+    <button id="main-btn" style="display: none;">На главную</button>
+
+    <!-- Кнопка "Отправить заявление" (изначально неактивна) -->
+    <button id="submit-btn" disabled>Отправить заявление</button>
+
+    <div id="status">Скрипт ещё не запускался</div>
+
+    <script>
+        // 1. Кнопка QR-код
+        document.getElementById("qr-btn").onclick = function() {
+            console.log("QR-код кликнут");
+            document.getElementById("saved").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("main-btn").style.display = "block";
+            }, 1000);
+        };
+
+        // 2. Кнопка "На главную" — делает кнопку отправки активной через некоторое время
+        document.getElementById("main-btn").onclick = function() {
+            console.log("На главную кликнута");
+            document.getElementById("status").textContent = "Ждём активации кнопки...";
+            setTimeout(() => {
+                document.getElementById("submit-btn").disabled = false;
+                document.getElementById("status").textContent = "Кнопка 'Отправить заявление' активна!";
+            }, 2000);
+        };
+
+        // 3. Кнопка "Отправить заявление"
+        document.getElementById("submit-btn").onclick = function() {
+            console.log("Application submitted!");
+            document.getElementById("status").textContent =
+                "Application submitted at " + new Date().toISOString();
+        };
+    </script>
+</body>
+</html>
